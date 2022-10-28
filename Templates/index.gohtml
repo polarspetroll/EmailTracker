@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Email Tracker</title>
+    <link rel="stylesheet" href="/statics/style.css"/>
+    <script type="text/jscript" src="/statics/script.js"></script>
+  </head>
+  <body>
+    <p><a href="https://github.com/polarspetroll/">Github</a></p>
+    <div id="tokeninput">
+    <input placeholder="Token" id="token"/>
+    <button onclick="getInfo()">Search</button>
+  </div>
+    <div id="newtokenbutton">
+    <button id="newtoken" onclick="getNewToken()">Generate New Token</button>
+    <p id="imageurl"></p>
+    <p id="tokenvalue"></p>
+  </div>
+<center>
+  <fieldset hidden id="fs">
+    <p class="info" id="info0"></p>
+    <p class="info" id="info1"></p>
+    <p class="info" id="info2"></p>
+    <p class="info" id="info3"></p>
+  </fieldset>
+</center>
+  </body>
+</html>

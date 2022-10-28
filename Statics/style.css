@@ -1,0 +1,50 @@
+#newtokenbutton {
+  text-align: center;
+  margin: 3%;
+}
+
+
+#tokeninput {
+  text-align: center;
+  margin-top: 10%;
+}
+
+
+.info {
+  text-align: center;
+  width: auto;
+  height: auto;
+}
+
+body {
+   background-image: linear-gradient(to left, green, black, green);
+}
+
+fieldset {
+  width: 600px;
+  height: 400px;
+  border-color: gray;
+  color: green;
+  background-color: black;
+}
+
+button {
+  padding: 5px;
+  border-radius: 10px;
+  border-color: transparent;
+}
+
+input {
+  padding: 5px;
+  border-radius: 10px;
+  border-color: transparent;
+}
+
+#imageurl, #tokenvalue {
+  color: white;
+  weight: bold;
+}
+
+a {
+  color:yellow;
+}
