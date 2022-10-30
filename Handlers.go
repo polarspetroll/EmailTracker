@@ -4,8 +4,6 @@ import (
 	"crypto/rand"
 	"encoding/json"
 	"fmt"
-	"github.com/replit/database-go"
-	"github.com/xojoc/useragent"
 	"html/template"
 	"io"
 	"net"
@@ -13,9 +11,12 @@ import (
 	"net/url"
 	"os"
 	"strings"
+
+	"github.com/replit/database-go"
+	"github.com/xojoc/useragent"
 )
 
-var tmpl = template.Must(template.ParseFiles("Templates/index.gohtml"))
+var tmpl = template.Must(template.ParseFiles("Templates/index.html"))
 
 func Index(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, nil)

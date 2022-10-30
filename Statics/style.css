@@ -1,50 +1,54 @@
-#newtokenbutton {
-  text-align: center;
-  margin: 3%;
+body {
+  background-image: URL("https://coolbackgrounds.io/images/backgrounds/index/compute-ea4c57a4.png");
+  background-size: cover;
 }
-
 
 #tokeninput {
   text-align: center;
-  margin-top: 10%;
 }
 
+#token{
+  background-color: rgba(0, 200, 200, 0.7);
+  border-color: transparent;
+  color: white;
+  height: 25px;
+  width: 200px;
+  border-radius: 10px;
+  margin-top: 50px;
+}
 
-.info {
+.button {
+  background-color: rgba(0, 200, 200, 0.7);
+  border-radius: 8px;
+  height: 30px;
+  border-color: transparent;
+}
+
+#newtokenbutton {
   text-align: center;
-  width: auto;
-  height: auto;
+  margin-top: 30px;
+  margin-right: 50px;
 }
 
-body {
-   background-image: linear-gradient(to left, green, black, green);
-}
-
-fieldset {
-  width: 600px;
-  height: 400px;
-  border-color: gray;
-  color: green;
-  background-color: black;
-}
-
-button {
+#fs {
+  color: rgb(0, 255, 0);
+  font-family: Courier New;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
   padding: 5px;
-  border-radius: 10px;
-  border-color: transparent;
-}
-
-input {
-  padding: 5px;
-  border-radius: 10px;
-  border-color: transparent;
+  width: 700px;
+  margin-top: 40px;
+  overflow: hidden;
+  text-align: left;
+  
 }
 
 #imageurl, #tokenvalue {
-  color: white;
-  weight: bold;
+  color: rgb(0, 255, 0);
+  font-family: Courier New;
 }
 
-a {
-  color:yellow;
+#github {
+  text-decoration: none;
+  color:rgb(0, 255, 0);
 }
