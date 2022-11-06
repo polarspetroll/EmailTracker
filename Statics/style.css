@@ -1,6 +1,11 @@
 body {
   background-image: URL("https://coolbackgrounds.io/images/backgrounds/index/compute-ea4c57a4.png");
   background-size: cover;
+  background-color: black;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  scrollbar-width: none;
 }
 
 #tokeninput {

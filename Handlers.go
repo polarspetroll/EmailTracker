@@ -25,8 +25,8 @@ func Index(w http.ResponseWriter, r *http.Request) {
 func NewToken(w http.ResponseWriter, r *http.Request) {
 	bytes := make([]byte, 20)
 	rand.Read(bytes)
-	database.Set(fmt.Sprintf("%X.png", bytes), "")
-	w.Write([]byte(fmt.Sprintf(`{"token":"%X.png"}`, bytes)))
+	database.Set(fmt.Sprintf("%X", bytes), "")
+	w.Write([]byte(fmt.Sprintf(`{"token":"%X"}`, bytes)))
 }
 
 func GetInfo(w http.ResponseWriter, r *http.Request) {
