@@ -31,6 +31,13 @@ func NewToken(w http.ResponseWriter, r *http.Request) {
 
 func GetInfo(w http.ResponseWriter, r *http.Request) {
 	q := r.URL.Query()
+	if len(q["token"]) == 0 {
+		w.Write([]byte(`{"Ok":false, "Error":"Token Does Not Exist"}`))
+		return
+	}else if q["token"][0] == "" || len(q["token"][0]) != 40{
+		w.Write([]byte(`{"Ok":false, "Error":"Token Does Not Exist"}`))
+		return
+	}
 	info, err := database.Get(q["token"][0])
 	if err != nil {
 		w.Write([]byte(`{"Ok":false, "Error":"Token Does Not Exist"}`))
