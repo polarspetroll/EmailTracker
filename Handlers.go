@@ -50,7 +50,7 @@ func Image(w http.ResponseWriter, r *http.Request) {
 		q := r.URL.Query()
 		if len(q["token"]) == 0 {
 			return
-		}else if q["token"][0] == "" {
+		}else if q["token"][0] == "" || len(q["token"][0]) != 40{
 			return
 		}
 		key:= q["token"][0]
