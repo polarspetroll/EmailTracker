@@ -48,7 +48,12 @@ func Image(w http.ResponseWriter, r *http.Request) {
 		info := GenerateInfoStruct(r)
 		j, _ := json.Marshal(info)
 		q := r.URL.Query()
-		key := q["token"][0]
+		if len(q["token"]) == 0 {
+			return
+		}else if q["token"][0] == "" {
+			return
+		}
+		key:= q["token"][0]
 		database.Set(key, string(j))
 	}
 
