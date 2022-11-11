@@ -54,6 +54,10 @@ func Image(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		key:= q["token"][0]
+		s, err := database.Get(q["token"][0])
+		if err != nil || s == ""{
+			return
+		}
 		database.Set(key, string(j))
 	}
 
