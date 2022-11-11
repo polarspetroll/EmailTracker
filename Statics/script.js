@@ -2,7 +2,7 @@ const URL = document.URL
 
 function getNewToken() {
   fetch(URL + "/api/NewToken").then((resp)=>{ return resp.json() }).then((json)=>{
-    document.getElementById("imageurl").innerText = `Image URL : ${URL}image/${json.token}`;
+    document.getElementById("imageurl").innerText = `Image URL : ${URL}image/?token=${json.token}`;
     document.getElementById("tokenvalue").innerText = `Token : ${json.token}`
 })
 

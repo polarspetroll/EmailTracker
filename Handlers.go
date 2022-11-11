@@ -47,12 +47,13 @@ func Image(w http.ResponseWriter, r *http.Request) {
 	if !strings.Contains(r.Header["User-Agent"][0], "GoogleImageProxy") {
 		info := GenerateInfoStruct(r)
 		j, _ := json.Marshal(info)
-		key := r.URL.Path[7:]
+		q := r.URL.Query()
+		key := q["token"][0]
 		database.Set(key, string(j))
 	}
 
 	file, _ := os.ReadFile("image.png")
-	w.Header().Set("Content-Type", "application/octet-stream")
+	w.Header().Set("Content-Type", "image/png")
 	w.Write(file)
 }
 
