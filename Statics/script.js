@@ -10,6 +10,12 @@ function getNewToken() {
 
 
 function getInfo() {
+
+  document.getElementById("info0").innerText = null
+  document.getElementById("info1").innerText = null
+  document.getElementById("info2").innerText = null
+  document.getElementById("info3").innerText = null
+
   let key = document.getElementById("token").value
   fetch(`${URL}/api/GetInfo?token=${key}`).then(
     (resp) => {
