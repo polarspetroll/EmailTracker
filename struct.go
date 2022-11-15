@@ -4,7 +4,8 @@ type Info struct {
 	IP          string `json:"ipaddr"`
 	UserAgent   string `json:"useragent"`
 	Device      string `json:"deviceinfo"`
-	GeoLocation string `json:glocation`
+	GeoLocation string `json:"glocation"`
+	Time        int64  `json:"time"`
 }
 
 type IP struct {

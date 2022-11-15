@@ -25,10 +25,12 @@ function getInfo() {
     (j) => {
       document.getElementById('fs').removeAttribute('hidden');
       if (j.Ok || j.Ok == null) {
+        let d = new Date(j.time)
         document.getElementById("info0").innerText = `IP Address: ${j.ipaddr}`
         document.getElementById("info1").innerText = `User Agent: ${j.useragent}`
         document.getElementById("info2").innerText = `Device: \n${j.deviceinfo}`
         document.getElementById("info3").innerText = `Geo Location:\n(Information provided by ip-api.com)\n${j.GeoLocation}`
+        document.getElementById("info4").innerText = `Visit Time: ${d.toString()}`
       }else {
         document.getElementById("info0").innerText = j.Error;
       }

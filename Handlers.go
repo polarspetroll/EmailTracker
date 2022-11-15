@@ -11,6 +11,7 @@ import (
 	"net/url"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/replit/database-go"
 	"github.com/xojoc/useragent"
@@ -34,7 +35,7 @@ func GetInfo(w http.ResponseWriter, r *http.Request) {
 	if len(q["token"]) == 0 {
 		w.Write([]byte(`{"Ok":false, "Error":"Token Does Not Exist"}`))
 		return
-	}else if q["token"][0] == "" || len(q["token"][0]) != 40{
+	} else if q["token"][0] == "" || len(q["token"][0]) != 40 {
 		w.Write([]byte(`{"Ok":false, "Error":"Token Does Not Exist"}`))
 		return
 	}
@@ -51,16 +52,17 @@ func GetInfo(w http.ResponseWriter, r *http.Request) {
 }
 
 func Image(w http.ResponseWriter, r *http.Request) {
+	t := time.Now().UTC().UnixMilli()
 	if !strings.Contains(r.Header["User-Agent"][0], "GoogleImageProxy") {
-		info := GenerateInfoStruct(r)
+		info := GenerateInfoStruct(r, t)
 		j, _ := json.Marshal(info)
 		q := r.URL.Query()
 		if len(q["token"]) == 0 {
 			return
-		}else if q["token"][0] == "" || len(q["token"][0]) != 40{
+		} else if q["token"][0] == "" || len(q["token"][0]) != 40 {
 			return
 		}
-		key:= q["token"][0]
+		key := q["token"][0]
 		_, err := database.Get(q["token"][0])
 		if err != nil {
 			return
@@ -98,7 +100,7 @@ func getIP(r *http.Request) string {
 	return ""
 }
 
-func GenerateInfoStruct(r *http.Request) (infoPack Info) {
+func GenerateInfoStruct(r *http.Request, unixTime int64) (infoPack Info) {
 	var ipAddr IP
 	ua := r.Header.Get("User-Agent")
 	parsedua := useragent.Parse(ua)
@@ -123,6 +125,6 @@ func GenerateInfoStruct(r *http.Request) (infoPack Info) {
 		parsedua.Mobile,
 		parsedua.Tablet,
 	)
-	infoPack = Info{IP: ipAddr.Query, UserAgent: ua, Device: device, GeoLocation: geoLocation}
+	infoPack = Info{IP: ipAddr.Query, UserAgent: ua, Device: device, GeoLocation: geoLocation, Time: unixTime}
 	return infoPack
 }
