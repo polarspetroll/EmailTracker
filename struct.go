@@ -6,6 +6,7 @@ type Info struct {
 	Device      string `json:"deviceinfo"`
 	GeoLocation string `json:"glocation"`
 	Time        int64  `json:"time"`
+	Opened      bool   `json:"opened"`
 }
 
 type IP struct {

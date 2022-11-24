@@ -54,8 +54,6 @@ func GetInfo(w http.ResponseWriter, r *http.Request) {
 func Image(w http.ResponseWriter, r *http.Request) {
 	t := time.Now().UTC().UnixMilli()
 	if !strings.Contains(r.Header["User-Agent"][0], "GoogleImageProxy") {
-		info := GenerateInfoStruct(r, t)
-		j, _ := json.Marshal(info)
 		q := r.URL.Query()
 		if len(q["token"]) == 0 {
 			return
@@ -63,11 +61,18 @@ func Image(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		key := q["token"][0]
-		_, err := database.Get(q["token"][0])
+		v, err := database.Get(q["token"][0])
 		if err != nil {
 			return
 		}
-		database.Set(key, string(j))
+		var out Info
+		json.Unmarshal([]byte(v), &out)
+		if !out.Opened || v == "" {
+			info := GenerateInfoStruct(r, t)
+			j, _ := json.Marshal(info)
+			database.Set(key, string(j))
+		}
+
 	}
 
 	file, _ := os.ReadFile("image.png")
@@ -125,6 +130,6 @@ func GenerateInfoStruct(r *http.Request, unixTime int64) (infoPack Info) {
 		parsedua.Mobile,
 		parsedua.Tablet,
 	)
-	infoPack = Info{IP: ipAddr.Query, UserAgent: ua, Device: device, GeoLocation: geoLocation, Time: unixTime}
+	infoPack = Info{IP: ipAddr.Query, UserAgent: ua, Device: device, GeoLocation: geoLocation, Time: unixTime, Opened: true}
 	return infoPack
 }
